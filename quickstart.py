@@ -1,6 +1,28 @@
 '''
 
 From google quickstart
+
+Oh my god.
+
+
+Need an audio recording software.
+will figure that out soon
+
+
+Open AI Whisper is open source!
+Will probably use the smallest model to transcribe
+
+I'm pretty sure the database will be google calendar,
+no need to handle database here
+
+Yeah, let's do i
+
+
+
+
+
+
+
 '''
 
 
@@ -80,3 +102,5 @@ def main():
 
 if __name__ == "__main__":
   main()
+
+
