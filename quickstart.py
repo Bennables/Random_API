@@ -15,22 +15,11 @@ Will probably use the smallest model to transcribe
 I'm pretty sure the database will be google calendar,
 no need to handle database here
 
-Yeah, let's do i
+Yeah, let's do it
 
-
-
-
-
-
+ASK CHAT!
 
 '''
-
-
-
-
-
-
-
 
 import datetime
 import os.path
@@ -41,8 +30,19 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+
+'''
+Google Calendar Permission Scopes
+
+Useful Scopes
+calendar.freebusy - availability
+calendar.events   - view/edit events
+I think that's all we need
+more @ https://developers.google.com/workspace/calendar/api/auth
+
+'''
 # If modifying these scopes, delete the file token.json.
-SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
+SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
 
 
 def main():
@@ -53,6 +53,7 @@ def main():
   # The file token.json stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
+  #WE DON"T NEED THIS ANYMORE
   if os.path.exists("token.json"):
     creds = Credentials.from_authorized_user_file("token.json", SCOPES)
   # If there are no (valid) credentials available, let the user log in.
