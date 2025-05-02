@@ -10,4 +10,5 @@ add libraries
     pip install
 
 remove libraries 
-    pip uninstal
+    pip uninstall
+    
