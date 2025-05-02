@@ -1,0 +1,13 @@
+Instructions
+
+Create a venv
+    python3 -m venv venv
+
+activate
+    source venv/bin/activate
+
+add libraries
+    pip install
+
+remove libraries 
+    pip uninstal
