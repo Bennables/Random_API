@@ -1,0 +1,24 @@
+
+{
+  "summary": "Google I/O 2015",
+  "location": "800 Howard St., San Francisco, CA 94103",
+  "description": "A chance to hear more about Google\"s developer products.",
+  "start": {
+    "dateTime": "2025-05-3T09:00:00-07:00",
+    "timeZone": "America/Los_Angeles"
+  },
+  "end": {
+    "dateTime": "2025-05-3T17:00:00-07:00",
+    "timeZone": "America/Los_Angeles"
+  },
+  "recurrence": [
+    "RRULE:FREQ=DAILY;COUNT=2"
+  ],
+  "reminders": {
+    "useDefault": "False",
+    "overrides": [
+      {"method": "email", "minutes": 1440},
+      {"method": "popup", "minutes": 10}
+    ]
+  }
+}
