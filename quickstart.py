@@ -30,13 +30,30 @@ FUTURE GOALS:
 import datetime
 import os.path
 import json
+import re
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from google import genai
+from geminitoken import TOKEN
 
+client = genai.Client(api_key=TOKEN)
+
+
+def generate(prompt):
+    response = client.models.generate_content(
+        model="gemini-2.0-flash", contents=['I will give you a prompt. Generate a json in this format'
+                                            '"summary": "event summary",'
+                                            '"location": "location, empty if none specified"'
+                                            '"description": "description, empty if none specified"'
+                                            '"start": "time"'
+                                            '"end": "time"'
+                                            ,prompt]
+                            )
+    return response
 
 '''
 Google Calendar Permission Scopes
@@ -81,6 +98,30 @@ def main():
 
         # Call the Calendar API
         now = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
+
+        with open('ExPrompt.txt', 'r') as f:
+            text = f.readline()
+        print(text)
+
+        # a = generate(text)
+        # print(a)
+        # print(type(a))
+        # print(a.text)
+
+        # 1. Extract the JSON block using regex
+        match = re.search(r'```json\s*(\{.*?\})\s*```', generate(text).text, re.DOTALL)
+        if match:
+            json_str = match.group(1)
+            json_obj = json.loads(json_str)
+            
+            # 2. Convert the string to a Python dictionary
+            
+            print("Extracted JSON data:")
+            with open("event.json", 'w') as f:
+               json.dump(json_obj, f, indent = 2)
+        else:
+            print("No JSON found.")
+
         # Open and read the JSON file
         with open('BareEvent.json', 'r') as file:
             data = json.load(file)
